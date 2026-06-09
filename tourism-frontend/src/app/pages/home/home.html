@@ -1,0 +1,50 @@
+
+<div class="hero">
+    <div class="hero-content">
+        <div class="hero-top">
+            <span class="hero-badge">New</span>
+            <div class="hero-actions">
+                <button class="secondary" routerLink="/login" *ngIf="!authService.isAuthenticated()">Login</button>
+                <button class="secondary outline" routerLink="/create-account" *ngIf="!authService.isAuthenticated()">Create account</button>
+                <button class="secondary" routerLink="/dashboard" *ngIf="authService.isAuthenticated()">Dashboard</button>
+            </div>
+        </div>
+        <h1>Discover Cameroon</h1>
+        <p>Explore the beauty of nature, adventure and culture with curated stays, dining, and local experiences.</p>
+        <div class="hero-buttons">
+            <button routerLink="/places/hotels">Explore now</button>
+            <button class="secondary" routerLink="/places/destinations/">Popular destinations</button>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <h2>Categories</h2>
+    <div class="categories">
+        <div class="card" routerLink="/places/hotel/">
+            <img src="/assets/images/hilton.jpg" alt="hotels">
+
+            <h3>hotels</h3>
+        </div>
+        <div class="cat" routerLink="/places/restaurants/">
+            <img src="/assets/images/socrate.jpg" alt="restaurants">
+           
+            <h3>restaurants</h3>
+        </div>
+        <div class="cat" routerLink="/places/destinations/">
+            <img src="/assets/images/mount.jpg" alt="destinations"  >
+           
+            <h3>Mount Cameroon</h3>
+        <p>The highest peak in West Africa and a paradise for hikers and nature lovers.</p>
+        </div>
+        <div class="cat" routerLink="/places/cultures/">
+             <img src="/assets/images/musee.jpg" alt="cultures">
+
+            <h3>cultures</h3>
+        </div>
+        <div class="cat" routerLink="supermarket">
+            <img src="/assets/images/carrefour.jpg" alt="supermarket">
+            
+            <h3>supermarket</h3>
+        </div>
+    </div>
+</div>

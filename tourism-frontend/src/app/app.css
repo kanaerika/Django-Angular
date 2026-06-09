@@ -1,0 +1,37 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.page-content {
+  min-height: calc(100vh - 100px);
+}
+
+.app-footer {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: rgba(15, 23, 42, 0.98);
+  color: #d1d5db;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.app-footer a {
+  color: #60a5fa;
+  text-decoration: none;
+  margin: 0 0.35rem;
+}
+
+.app-footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Hide global footer on auth pages when body.hide-footer is set */
+body.hide-footer .app-footer {
+  display: none !important;
+}

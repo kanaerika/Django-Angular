@@ -1,0 +1,733 @@
+
+<nav class="navbar">
+
+  <div class="logo">
+    Explore Cameroon
+  </div>
+
+  <ul class="nav-links">
+    <li>Home</li>
+    <li>Destinations</li>
+    <li>Hotels</li>
+    <li>Profile</li>
+    <li>mybookings</li>
+  </ul>
+
+</nav>
+
+<section class="hero">
+
+  <div class="overlay">
+
+    <h1>Discover Cameroon</h1>
+
+    <h3>Africa in Miniature</h3>
+
+    <p>
+      Explore breathtaking mountains, beaches,
+      wildlife reserves and cultural treasures.
+    </p>
+
+    <div class="search-box">
+
+      <input
+        type="text"
+        placeholder="Search destinations..."
+      >
+
+      <button>
+        Explore
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="quick-categories">
+
+  <div class="category-card">
+    🏨
+    <h3>Hotels</h3>
+  </div>
+
+  <div class="category-card">
+    🌳
+    <h3>Parks</h3>
+  </div>
+
+  <div class="category-card">
+    🍽
+    <h3>Restaurants</h3>
+  </div>
+
+  <div class="category-card">
+    🎭
+    <h3>Culture</h3>
+  </div>
+
+</section>
+
+<section class="why-cameroon">
+
+  <div class="section-header">
+
+    <h2>Why Visit Cameroon?</h2>
+
+    <p>
+      Known as Africa in Miniature, Cameroon offers
+      mountains, beaches, rainforests, wildlife,
+      diverse cultures and unforgettable adventures.
+    </p>
+
+  </div>
+
+  <div class="stats-container">
+
+    <div class="stat-card">
+      <h3>120+</h3>
+      <p>Tourist Destinations</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>50+</h3>
+      <p>Hotels & Resorts</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>20+</h3>
+      <p>Parks & Reserves</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>250+</h3>
+      <p>Visitor Reviews</p>
+    </div>
+
+  </div>
+
+</section>
+<div class="preview-gallery">
+
+  <img src="assets/images/socrate.jpg">
+
+  <img src="assets/images/yaounde.jpg">
+
+  <img src="assets/images/musée2.jpg">
+
+  <img src="assets/images/cultres.jpg">
+
+</div>
+<section class="featured-destinations">
+  <div class="section-title">
+    <h2>Destinations depuis le backend</h2>
+    <p>Les cartes ci-dessous sont alimentées par les endpoints documentés de l’API.</p>
+  </div>
+
+  <p *ngIf="isLoading">Chargement des données backend…</p>
+  <p *ngIf="errorMessage" class="backend-error">{{ errorMessage }}</p>
+
+  <div class="destinations-grid" *ngIf="featuredCities.length">
+    <app-destination-card *ngFor="let city of featuredCities" [destination]="city"></app-destination-card>
+  </div>
+</section>
+
+<section class="featured-destinations">
+  <div class="section-title">
+    <h2>Activités recommandées</h2>
+    <p>Connexion avec les activités exposées par le backend.</p>
+  </div>
+
+  <div class="destinations-grid" *ngIf="featuredActivities.length">
+    <app-activity-card *ngFor="let activity of featuredActivities" [activity]="activity"></app-activity-card>
+  </div>
+</section>
+
+<section class="featured-destinations">
+
+  <div class="section-title">
+
+    <h2>Featured Destinations</h2>
+
+    <p>
+      Discover some of the most breathtaking places
+      Cameroon has to offer.
+    </p>
+
+  </div>
+
+  <div class="destinations-grid">
+
+    <!-- Destination 1 -->
+    <div class="destination-card">
+
+      <img
+        src="assets/images/mount.jpg"
+        alt="Mount Cameroon"
+      >
+
+      <div class="destination-content">
+
+        <h3>Mount Cameroon</h3>
+
+        <span class="location">
+          📍 Buea
+        </span>
+
+        <p>
+          The highest mountain in West and Central Africa,
+          offering unforgettable hiking adventures.
+        </p>
+
+        <div class="rating">
+          ⭐⭐⭐⭐⭐
+          <span>4.9</span>
+        </div>
+
+        <button routerLink="/destination/1">
+        Explore
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Destination 2 -->
+    <div class="destination-card">
+
+      <img
+        src="assets/images/1000304525.jpg"
+        alt="kribi"
+      >
+
+      <div class="destination-content">
+
+        <h3>kribi beach</h3>
+
+        <span class="location">
+          📍 South Region
+        </span>
+
+        <p>
+          Crystal-clear waters, golden sand and
+          unforgettable sunsets on the Atlantic coast.
+        </p>
+
+        <div class="rating">
+          ⭐⭐⭐⭐⭐
+          <span>4.8</span>
+        </div>
+
+        <button routerLink="/destination/2">
+          Explore
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Destination 3 -->
+    <div class="destination-card">
+
+      <img
+        src="assets/images/waza.jpg"
+        alt="Waza"
+      >
+
+      <div class="destination-content">
+
+        <h3>Waza National Park</h3>
+
+        <span class="location">
+          📍 Far North
+        </span>
+
+        <p>
+          One of Africa's most impressive wildlife
+          reserves with rich biodiversity.
+        </p>
+
+        <div class="rating">
+          ⭐⭐⭐⭐⭐
+          <span>4.7</span>
+        </div>
+
+        <button routerLink="/destination/3">
+          Explore
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<section class="explore-categories">
+
+  <div class="section-title">
+
+    <h2>Explore Categories</h2>
+
+    <p>
+      Discover the many experiences Cameroon has to offer.
+    </p>
+
+  </div>
+
+  <div class="categories-grid">
+
+    <div class="category-box" routerLink="/hotels">
+      <img src="assets/images/hilton.jpg">
+      <div class="category-overlay">
+        <h3>Hotels</h3>
+        <p>
+          Luxury hotels, resorts and affordable accommodations.
+        </p>
+      </div>
+    </div>
+
+    <div class="category-box"routerLink="/restaurants">
+      <img src="assets/images/sevenhills.jpg">
+      <div class="category-overlay">
+        <h3>Restaurants</h3>
+        <p>
+          Discover local and international cuisine.
+        </p>
+      </div>
+    </div>
+
+    <div class="category-box"routerLink="/parks">
+      <img src="assets/images/waza.jpg">
+      <div class="category-overlay">
+        <h3>Parks</h3>
+        <p>
+          magnificient places to visit in Cameroon
+        </p>
+      </div>
+    </div>
+
+    <div class="category-box"routerLink="/mountains">
+      <img src="assets/images/mount.jpg">
+      <div class="category-overlay">
+        <h3>Mountains</h3>
+        <p>
+          Spectacular hiking and breathtaking landscapes.
+        </p>
+      </div>
+    </div>
+
+    <div class="category-box" routerLink="/lakes">
+      <img src="assets/images/lake1.jpg">
+      <div class="category-overlay">
+        <h3>Lakes</h3>
+        <p>
+          Peaceful waters and stunning natural scenery.
+        </p>
+      </div>
+    </div>
+
+    <div class="category-box" routerLink="/rivers">
+      <img src="assets/images/sanaga.jpg">
+      <div class="category-overlay">
+        <h3>Rivers</h3>
+        <p>
+          Explore Cameroon’s beautiful waterways.
+        </p>
+      </div>
+    </div>
+
+    <div class="category-box"routerLink="/culture">
+      <img src="assets/images/monu.jpg">
+      <div class="category-overlay">
+        <h3>Culture</h3>
+        <p>
+          Traditions, festivals and local heritage.
+        </p>
+      </div>
+    </div>
+
+    <div class="category-box"routerLink="/markets">
+      <img src="assets/images/grandmall.jpg">
+      <div class="category-overlay">
+        <h3>Markets</h3>
+        <p>
+          Discover crafts, fashion and local products.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+<section class="hotels-section">
+
+  <div class="section-title">
+
+    <h2>Popular Hotels & Resorts</h2>
+
+    <p>
+      Stay in some of Cameroon’s finest accommodations.
+    </p>
+
+  </div>
+
+  <div class="hotels-grid">
+
+    <div class="hotel-card">
+     <span class="hotel-badge">
+  Popular
+</span>
+      <img
+        src="assets/images/hilton.jpg"
+        alt="Hilton Yaounde"
+      >
+
+      <div class="hotel-content">
+       
+        <h3>Hilton Yaoundé</h3>
+
+        <span class="hotel-location">
+          📍 Yaoundé
+        </span>
+
+        <p>
+          Luxury accommodation with elegant rooms,
+          restaurants and conference facilities.
+        </p>
+
+        <div class="hotel-footer">
+
+          <div class="rating">
+            ⭐ 4.8
+          </div>
+
+          <button [routerLink]="['/booking']" [queryParams]="{ scheduleId: 1 }">
+            Book Now
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="hotel-card">
+         <span class="hotel-badge">
+  Popular
+</span>
+      <img
+        src="assets/images/kribi.jpg"
+        alt="Kribi Resort"
+      >
+
+      <div class="hotel-content">
+
+        <h3>Kribi Beach Resort</h3>
+
+        <span class="hotel-location">
+          📍 Kribi
+        </span>
+
+        <p>
+          Beautiful ocean views and direct access
+          to the beach.
+        </p>
+
+        <div class="hotel-footer">
+
+          <div class="rating">
+            ⭐ 4.9
+          </div>
+
+          <button [routerLink]="['/booking']" [queryParams]="{ scheduleId: 2 }">
+            Book Now
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="hotel-card">
+     <span class="hotel-badge">
+  Popular
+</span>
+      <img
+        src="assets/images/mounthotel.jpg"
+        alt="Mountain Hotel"
+      >
+
+      <div class="hotel-content">
+
+        <h3>Mountain Hotel</h3>
+
+        <span class="hotel-location">
+          📍 Buea
+        </span>
+
+        <p>
+          Comfortable accommodation near Mount Cameroon.
+        </p>
+
+        <div class="hotel-footer">
+
+          <div class="rating">
+            ⭐ 4.7
+          </div>
+
+          <button [routerLink]="['/booking']" [queryParams]="{ scheduleId: 3 }" >
+            Book Now
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<section class="travel-section">
+
+  <div class="section-title">
+
+    <h2>Travel Tips & Cultural Events</h2>
+
+    <p>
+      Prepare for your journey and discover unique experiences.
+    </p>
+
+  </div>
+
+  <div class="travel-container">
+
+    <!-- Travel Tips -->
+
+    <div class="travel-card">
+
+      <h3>🧳 Travel Tips</h3>
+
+      <ul>
+
+        <li>
+          Best travel season:
+          November - February
+        </li>
+
+        <li>
+          Carry light clothing for coastal areas.
+        </li>
+
+        <li>
+          Bring hiking gear for mountain regions.
+        </li>
+
+        <li>
+          Keep a camera for wildlife adventures.
+        </li>
+
+      </ul>
+
+    </div>
+
+    <!-- Events -->
+
+    <div class="travel-card">
+
+      <h3>🎭 Upcoming Cultural Events</h3>
+
+      <ul>
+
+        <li>
+          Ngondo Cultural Festival
+        </li>
+
+        <li>
+          Mount Cameroon Race of Hope
+        </li>
+
+        <li>
+          National Arts Festival
+        </li>
+
+        <li>
+          Traditional Kingdom Celebrations
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</section>
+<section class="quote-section">
+
+  <div class="quote-overlay">
+
+    <h2>
+      "Adventure Awaits in Every Corner of Cameroon"
+    </h2>
+
+    <button>
+      Start Exploring
+    </button>
+
+  </div>
+
+</section>
+<section class="reviews-section">
+
+  <div class="section-title">
+
+    <h2>What Our Visitors Say</h2>
+
+    <p>
+      Experiences shared by travelers who explored Cameroon.
+    </p>
+
+  </div>
+
+  <div class="reviews-grid">
+
+    <div class="review-card">
+
+      <div class="review-header">
+
+        <img
+          src="assets/images/erika.jpg"
+          alt="Visitor">
+
+        <div>
+
+          <h4>Kana. E</h4>
+
+          <span>United Kingdom</span>
+
+        </div>
+
+      </div>
+
+      <div class="stars">
+        ⭐⭐⭐⭐⭐
+      </div>
+
+      <p>
+        Mount Cameroon was an unforgettable adventure.
+        The scenery was breathtaking and the guides
+        were excellent.
+      </p>
+
+    </div>
+
+    <div class="review-card">
+
+      <div class="review-header">
+
+        <img
+          src="assets/images/me.jpg"
+          alt="Visitor">
+
+        <div>
+
+          <h4>Emrys.</h4>
+
+          <span>Canada</span>
+
+        </div>
+
+      </div>
+
+      <div class="stars">
+        ⭐⭐⭐⭐⭐
+      </div>
+
+      <p>
+        Kribi Beach exceeded my expectations.
+        Beautiful sunsets and very relaxing atmosphere.
+      </p>
+
+    </div>
+
+    <div class="review-card">
+
+      <div class="review-header">
+
+        <img
+          src="assets/images/erika.jpg"
+          alt="Visitor">
+
+        <div>
+
+          <h4>keran K.</h4>
+
+          <span>Germany</span>
+
+        </div>
+
+      </div>
+
+      <div class="stars">
+        ⭐⭐⭐⭐⭐
+      </div>
+
+      <p>
+        Cameroon truly deserves the name
+        "Africa in Miniature".
+        So much diversity in one country.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+<section class="stats-banner">
+
+  <div class="stat-item">
+    <h3>10,000+</h3>
+    <p>Visitors</p>
+  </div>
+
+  <div class="stat-item">
+    <h3>120+</h3>
+    <p>Destinations</p>
+  </div>
+
+  <div class="stat-item">
+    <h3>4.8</h3>
+    <p>Average Rating</p>
+  </div>
+
+  <div class="stat-item">
+    <h3>500+</h3>
+    <p>Reviews</p>
+  </div>
+
+</section>
+<footer class="footer">
+
+  <h3>Explore Cameroon</h3>
+
+  <p>
+    Discover the beauty of Africa in Miniature.
+  </p>
+
+  <div class="footer-links">
+
+    <a href="#">Home</a>
+    <a href="#">Destinations</a>
+    <a href="#">Hotels</a>
+    <a href="#">Bookings</a>
+
+  </div>
+
+  <p class="copyright">
+    © 2026 Explore Cameroon
+  </p>
+
+</footer>

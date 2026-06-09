@@ -1,0 +1,8 @@
+.destination-card { display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12); }
+.destination-card img { width: 100%; height: 180px; object-fit: cover; }
+.destination-content { padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.destination-content h3 { margin: 0; font-size: 1.05rem; }
+.location { color: #0f766e; font-size: 0.95rem; }
+.meta-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.chip { background: #ecfeff; color: #115e59; border-radius: 999px; padding: 6px 10px; font-size: 0.85rem; }
+button { border: none; border-radius: 999px; background: linear-gradient(135deg, #0ea5e9, #2563eb); color: #fff; padding: 8px 12px; cursor: pointer; }

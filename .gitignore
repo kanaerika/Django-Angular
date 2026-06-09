@@ -1,0 +1,17 @@
+# Python / Django
+__pycache__/
+*.pyc
+*.pyo
+*.env
+*.sqlite3
+venv/
+.env
+
+# Angular / Node
+tourism-frontend/node_modules/
+tourism-frontend/dist/
+tourism-frontend/.angular/
+
+# OS
+.DS_Store
+Thumbs.db

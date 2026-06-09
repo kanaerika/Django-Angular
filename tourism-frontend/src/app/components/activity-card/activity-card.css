@@ -1,0 +1,6 @@
+.activity-card { display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12); }
+.activity-card img { width: 100%; height: 180px; object-fit: cover; }
+.activity-content { padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.activity-content h3 { margin: 0; font-size: 1.05rem; }
+.activity-meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; color: #475569; font-size: 0.95rem; }
+.activity-content a { text-decoration: none; color: #2563eb; font-weight: 600; }

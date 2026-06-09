@@ -1,0 +1,57 @@
+<div class="booking-container">
+
+  <h2>Book Your Tour</h2>
+
+  <form (ngSubmit)="submitBooking()">
+
+    <div class="form-group">
+
+      <label>Schedule ID</label>
+
+      <input
+        type="number"
+        [(ngModel)]="bookingData.schedule"
+        name="schedule"
+        required>
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Number Of Travelers</label>
+
+      <input
+        type="number"
+        [(ngModel)]="bookingData.number_of_travelers"
+        name="travelers"
+        min="1"
+        required>
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Special Requests</label>
+
+      <textarea
+        [(ngModel)]="bookingData.special_requests"
+        name="requests">
+      </textarea>
+
+    </div>
+
+    <button type="submit">
+      Confirm Booking
+    </button>
+
+  </form>
+
+  <div class="success" *ngIf="successMessage">
+    {{ successMessage }}
+  </div>
+
+  <div class="error" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+</div>

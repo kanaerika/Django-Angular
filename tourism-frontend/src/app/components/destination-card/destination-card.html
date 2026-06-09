@@ -1,0 +1,12 @@
+<article class="destination-card">
+  <img [src]="imageUrl" [alt]="destination?.name || 'Destination'" />
+  <div class="destination-content">
+    <h3>{{ destination?.name || 'Destination' }}</h3>
+    <span class="location">📍 {{ locationLabel }}</span>
+    <p>{{ destination?.description || 'Destination touristique disponible via l’API backend.' }}</p>
+    <div class="meta-row">
+      <span class="chip">{{ destination?.activities_count || 0 }} activités</span>
+      <button [routerLink]="['/destination', destination?.id || 1]">Voir</button>
+    </div>
+  </div>
+</article>

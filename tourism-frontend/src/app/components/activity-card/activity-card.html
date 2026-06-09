@@ -1,0 +1,12 @@
+<article class="activity-card">
+  <img [src]="imageUrl" [alt]="activity?.title || 'Activity'" />
+  <div class="activity-content">
+    <h3>{{ activity?.title || 'Activité' }}</h3>
+    <p>{{ activity?.description || 'Activité touristique disponible depuis l’API backend.' }}</p>
+    <div class="activity-meta">
+      <span>📍 {{ cityLabel }}</span>
+      <strong>{{ activity?.base_price || 0 }} XAF</strong>
+    </div>
+    <a [routerLink]="['/booking']" [queryParams]="{ scheduleId: activity?.slug || 1 }">Réserver</a>
+  </div>
+</article>

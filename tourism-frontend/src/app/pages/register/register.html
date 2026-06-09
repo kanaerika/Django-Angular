@@ -1,0 +1,134 @@
+<div class="signup-container">
+
+  <div class="left-panel">
+    <div class="left-overlay">
+      <span class="eyebrow">Welcome aboard</span>
+      <h2>Start your journey and discover the best places to stay.</h2>
+      <p>Fast booking, secure payments, and personalized recommendations for every trip.</p>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="form-header">
+      <h1>Create your account</h1>
+      <p>Sign up to unlock special travel offers and plan your next escape.</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <div class="input-box">
+        <label> first-Name</label>
+        <div class="field">
+          <i class="fa-solid fa-user left-icon"></i>
+          <input
+            type="text"
+            name="name"
+            placeholder="first Name"
+            [(ngModel)]="first_name"
+            required
+          >
+        </div>
+      </div>
+      <div class="input-box">
+        <label>Username</label>
+        <div class="field">
+          <i class="fa-solid fa-user left-icon"></i>
+          <input
+            type="text"
+            name="username"
+            placeholder="username"
+            [(ngModel)]="username"
+            required
+          >
+        </div>
+      </div>
+       <div class="input-box">
+        <label> Last-Name</label>
+        <div class="field">
+          <i class="fa-solid fa-user left-icon"></i>
+          <input
+            type="text"
+            name="Last"
+            placeholder="Last Name"
+            [(ngModel)]="last_name"
+            required
+          >
+        </div>
+      </div>
+ 
+      <div class="input-box">
+        <label>Email</label>
+        <div class="field">
+          <i class="fa-solid fa-envelope left-icon"></i>
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            [(ngModel)]="email"
+            required
+          >
+        </div>
+      </div>
+
+      <div class="input-box">
+        <label>Password</label>
+        <div class="field">
+          <i class="fa-solid fa-lock left-icon"></i>
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            name="password"
+            placeholder="Create Password"
+            [(ngModel)]="password"
+            required
+          >
+          <i
+            class="fa-solid toggle-icon"
+            [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"
+            (click)="togglePassword()"
+          ></i>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <label>confirm Password</label>
+        <div class="field">
+          <i class="fa-solid fa-lock left-icon"></i>
+          <input
+            [type]="showconfirmPassword ? 'text' : 'password'"
+            name="confirmPassword"
+            placeholder="Confirm password"
+            [(ngModel)]="confirmPassword"
+            required
+          >
+          <i
+            class="fa-solid toggle-icon"
+            [ngClass]="showconfirmPassword ? 'fa-eye' : 'fa-eye-slash'"
+            (click)="toggleRepeatPassword()"
+          ></i>
+        </div>
+      </div>
+
+      <button type="submit" class="signup-btn" [disabled]="isLoading">
+        {{ isLoading ? 'Creating account...' : 'Sign up' }}
+      </button>
+    </form>
+
+    <div class="bottom-text">
+      Already a member?
+      <a routerLink="/login">Sign in here</a>
+    </div>
+
+    <div class="divider">Or sign up with</div>
+
+    <div class="social-icons">
+      <div class="icon">
+        <i class="fa-brands fa-facebook-f"></i>
+      </div>
+      <div class="icon">
+        <i class="fa-brands fa-twitter"></i>
+      </div>
+      <div class="icon">
+        <i class="fa-brands fa-google"></i>
+      </div>
+    </div>
+  </div>
+</div>
