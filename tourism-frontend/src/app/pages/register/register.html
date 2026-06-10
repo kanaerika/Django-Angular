@@ -105,6 +105,28 @@
             (click)="toggleRepeatPassword()"
           ></i>
         </div>
+      
+      </div>
+      <div class="input-box">
+        <label>Account Type</label>
+        <div class="field">
+          <select [(ngModel)]="role" name="role">
+            <option value="tourist">Explorer (Touriste)</option>
+            <option value="admin">Administrateur</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="input-box" *ngIf="role === 'admin'">
+        <label>Code secret administrateur</label>
+        <div class="field">
+          <input
+            type="password"
+            name="adminCode"
+            placeholder="Code secret"
+            [(ngModel)]="adminCode"
+          >
+        </div>
       </div>
       <div *ngIf="successMessage" style="background:#d1f7dd; color:#0a6e31; padding:12px 16px; border-radius:8px; margin-bottom:14px; font-weight:600;">
         {{ successMessage }}

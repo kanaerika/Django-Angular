@@ -23,6 +23,8 @@ export class Register implements OnInit, OnDestroy {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  role: string = 'tourist';
+  adminCode: string = '';
   successMessage: string = '';
   errorMessage: string = '';
 
@@ -66,7 +68,7 @@ export class Register implements OnInit, OnDestroy {
 
     console.log('Sending registration data:', registrationData);
 
-    this.authService.register(this.first_name, this.username, this.last_name, this.email, this.password, this.confirmPassword).subscribe({
+    this.authService.register(this.first_name, this.username, this.last_name, this.email, this.password, this.confirmPassword, this.role, this.adminCode).subscribe({
       next: (response) => {
         this.isLoading = false;
         console.log('Registration successful:', response);

@@ -43,15 +43,22 @@ export class AuthService {
     });
   }
 
-  register(first_name: string, username: string, last_name: string, email: string, password: string, password2: string): Observable<RegisterResponse> {
-    return this.http.post<RegisterResponse>(`${this.apiBaseUrl}/users/`, {
+  register(first_name: string, username: string, last_name: string, email: string, password: string, password2: string, role: string = 'tourist', adminCode: string = ''): Observable<RegisterResponse> {
+    const payload: any = {
       username,
-      first_name, 
+      first_name,
       last_name,
       email,
       password,
       confirm_password: password2,
-    });
+    };
+    if (role === 'admin') {
+      payload.role_id = 1;       // Admin
+      payload.admin_code = adminCode;
+    } else {
+      payload.role_id = 3;       // Tourist / Explorer
+    }
+    return this.http.post<RegisterResponse>(`${this.apiBaseUrl}/users/`, payload);
   }
 
   refreshToken(refreshToken: string): Observable<{ access: string }> {

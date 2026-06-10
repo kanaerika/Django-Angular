@@ -39,7 +39,8 @@ export class Login {
       next: (response) => {
         localStorage.setItem('access_token', response.access);
         localStorage.setItem('refresh_token', response.refresh);
-        this.router.navigate(['/home']);
+        const roleName = (response.user?.role_name || '').toLowerCase();
+        this.router.navigate([roleName === 'admin' ? '/admin' : '/home']);
       },
       error: () => {
         alert('Invalid credentials. Please check your username and password.');

@@ -39,22 +39,36 @@ class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     confirm_password = serializers.CharField(write_only=True, required=True)
     role_id = serializers.PrimaryKeyRelatedField(queryset=Role.objects.all(), source='role', required=False, allow_null=True)
-    
+    admin_code = serializers.CharField(write_only=True, required=False, allow_blank=True)
+
+    ADMIN_SECRET_CODE = "CMR-ADMIN-2026"  # code secret requis pour créer un compte Admin
+
     class Meta:
         model = CustomUser
-        fields = [ 'first_name','username','last_name','email','role_id', 'password', 'confirm_password',]
-    
+        fields = ['first_name', 'username', 'last_name', 'email', 'role_id', 'password', 'confirm_password', 'admin_code']
+
     def validate(self, attrs):
         if attrs['password'] != attrs['confirm_password']:
             raise serializers.ValidationError({"password": "Les mots de passe ne correspondent pas."})
+
+        role = attrs.get('role')
+        admin_code = attrs.pop('admin_code', '')
+        if role and role.name.lower() == 'admin':
+            if admin_code != self.ADMIN_SECRET_CODE:
+                raise serializers.ValidationError({"admin_code": "Code administrateur invalide."})
         return attrs
-    
+
     def create(self, validated_data):
         validated_data.pop('confirm_password')
         user = CustomUser.objects.create_user(**validated_data)
+        # Les admins du système sont aussi "staff" Django (requis par IsAdminUser)
+        if user.role and user.role.name.lower() == 'admin':
+            user.is_staff = True
+            user.save(update_fields=['is_staff'])
         # Créer automatiquement un profil pour l'utilisateur
         Profile.objects.create(user=user)
         return user
+
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):

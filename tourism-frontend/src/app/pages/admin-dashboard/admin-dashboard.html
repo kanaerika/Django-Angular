@@ -1,0 +1,106 @@
+<section class="admin-shell">
+  <header class="admin-header">
+    <h1>Tableau de bord administrateur</h1>
+    <p>Gérez les utilisateurs, avis, réservations et activités.</p>
+  </header>
+
+  <nav class="admin-tabs">
+    <button [class.active]="tab === 'stats'" (click)="openTab('stats')">📊 Statistiques</button>
+    <button [class.active]="tab === 'users'" (click)="openTab('users')">👥 Utilisateurs</button>
+    <button [class.active]="tab === 'reviews'" (click)="openTab('reviews')">📝 Avis à modérer</button>
+    <button [class.active]="tab === 'bookings'" (click)="openTab('bookings')">📅 Réservations</button>
+    <button [class.active]="tab === 'create'" (click)="openTab('create')">➕ Créer</button>
+  </nav>
+
+  <div class="feedback" *ngIf="feedback" [class.error]="feedbackType === 'error'">{{ feedback }}</div>
+
+  <!-- STATS -->
+  <div class="stats-grid" *ngIf="tab === 'stats' && stats">
+    <div class="stat-card"><h2>{{ stats.user_count }}</h2><p>Utilisateurs</p></div>
+    <div class="stat-card"><h2>{{ stats.tour_count }}</h2><p>Activités</p></div>
+    <div class="stat-card"><h2>{{ stats.booking_count }}</h2><p>Réservations</p></div>
+    <div class="stat-card"><h2>{{ stats.review_count }}</h2><p>Avis</p></div>
+    <div class="stat-card"><h2>{{ stats.country_count }}</h2><p>Pays</p></div>
+    <div class="stat-card"><h2>{{ stats.city_count }}</h2><p>Villes</p></div>
+  </div>
+
+  <!-- USERS -->
+  <table class="admin-table" *ngIf="tab === 'users'">
+    <tr><th>Email</th><th>Nom</th><th>Rôle</th><th>Changer le rôle</th></tr>
+    <tr *ngFor="let u of users">
+      <td>{{ u.email }}</td>
+      <td>{{ u.full_name }}</td>
+      <td>{{ u.role_name || '—' }}</td>
+      <td>
+        <select #roleSel>
+          <option value="1">Admin</option>
+          <option value="2">Guide</option>
+          <option value="3" selected>Tourist</option>
+        </select>
+        <button class="mini" (click)="assignRole(u, roleSel.value)">Appliquer</button>
+      </td>
+    </tr>
+  </table>
+
+  <!-- REVIEWS -->
+  <div *ngIf="tab === 'reviews'">
+    <p *ngIf="reviews.length === 0">Aucun avis en attente de modération. 🎉</p>
+    <div class="review-card" *ngFor="let r of reviews">
+      <div>
+        <strong>⭐ {{ r.rating }} — {{ r.title }}</strong>
+        <p>{{ r.comment }}</p>
+      </div>
+      <div class="actions">
+        <button class="approve" (click)="moderate(r, true)">Approuver</button>
+        <button class="reject" (click)="moderate(r, false)">Rejeter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKINGS -->
+  <table class="admin-table" *ngIf="tab === 'bookings'">
+    <tr><th>Réf</th><th>Activité</th><th>Date</th><th>Statut</th><th>Changer</th></tr>
+    <tr *ngFor="let b of bookings">
+      <td>{{ b.booking_reference | slice:0:8 }}…</td>
+      <td>{{ b.activity_title }}</td>
+      <td>{{ b.schedule_date }}</td>
+      <td><span class="status">{{ b.status_display }}</span></td>
+      <td>
+        <select #statusSel>
+          <option *ngFor="let s of bookingStatuses" [value]="s" [selected]="s === b.status">{{ s }}</option>
+        </select>
+        <button class="mini" (click)="setStatus(b, statusSel.value)">Appliquer</button>
+      </td>
+    </tr>
+  </table>
+
+  <!-- CREATE -->
+  <div class="create-grid" *ngIf="tab === 'create'">
+    <form (ngSubmit)="createActivity()">
+      <h3>Nouvelle activité</h3>
+      <label>Titre</label><input [(ngModel)]="newActivity.title" name="title" required>
+      <label>Ville</label>
+      <select [(ngModel)]="newActivity.city" name="city" required>
+        <option *ngFor="let c of cities" [value]="c.id">{{ c.name }}</option>
+      </select>
+      <label>Catégories</label>
+      <select [(ngModel)]="newActivity.categories" name="categories" multiple>
+        <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
+      </select>
+      <label>Description</label><textarea [(ngModel)]="newActivity.description" name="description"></textarea>
+      <label>Prix de base (FCFA)</label><input type="number" [(ngModel)]="newActivity.base_price" name="base_price" required>
+      <label>Durée (heures)</label><input type="number" step="0.5" [(ngModel)]="newActivity.duration_hours" name="duration_hours">
+      <label>Voyageurs max</label><input type="number" [(ngModel)]="newActivity.max_travelers" name="max_travelers">
+      <button type="submit">Créer l'activité</button>
+    </form>
+
+    <form (ngSubmit)="createSchedule()">
+      <h3>Nouveau créneau</h3>
+      <label>ID de l'activité</label><input type="number" [(ngModel)]="newSchedule.activity" name="activity" required>
+      <label>Date</label><input type="date" [(ngModel)]="newSchedule.date" name="date" required>
+      <label>Heure (HH:MM:SS)</label><input [(ngModel)]="newSchedule.start_time" name="start_time">
+      <label>Places</label><input type="number" [(ngModel)]="newSchedule.available_spots" name="available_spots">
+      <button type="submit">Créer le créneau</button>
+    </form>
+  </div>
+</section>

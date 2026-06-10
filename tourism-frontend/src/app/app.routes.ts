@@ -75,4 +75,10 @@ export const routes: Routes = [
       import('./pages/my-bookings/my-bookings')
       .then(m => m.MyBookingsPage)
   },
+  {
+    path: 'admin',
+    loadComponent: () =>
+      import('./pages/admin-dashboard/admin-dashboard')
+      .then(m => m.AdminDashboard)
+  },
 ];
