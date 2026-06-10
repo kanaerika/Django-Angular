@@ -5,6 +5,7 @@ import { Register } from './pages/register/register';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { DestinationDetails } from './pages/destination-details/destination-details';
 import { BookingComponent } from './pages/booking/booking.component';
+import { ProfilePage } from './pages/profile/profile';
 export const routes: Routes = [
   {
     path: '',
@@ -47,5 +48,6 @@ export const routes: Routes = [
       import('./pages/destination-details/destination-details')
       .then(m => m.DestinationDetails)
   },
-  { path: 'booking', component: BookingComponent }
+  { path: 'booking', component: BookingComponent },
+  { path: 'profile', component: ProfilePage }
 ];

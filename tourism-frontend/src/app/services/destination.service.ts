@@ -39,4 +39,12 @@ export class DestinationService {
       params: { q: query },
     });
   }
+
+  getCity(id: number): Observable<any> {
+    return this.http.get(`${this.apiBaseUrl}/cities/${id}/`);
+  }
+
+  getCityActivities(id: number): Observable<any> {
+    return this.http.get(`${this.apiBaseUrl}/cities/${id}/activities/`);
+  }
 }

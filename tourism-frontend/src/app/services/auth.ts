@@ -60,6 +60,28 @@ export class AuthService {
     });
   }
 
+  getMe(): Observable<any> {
+    return this.http.get(`${this.apiBaseUrl}/users/me/`, {
+      headers: this.getAuthHeaders(),
+    });
+  }
+
+  updateMe(payload: any): Observable<any> {
+    return this.http.put(`${this.apiBaseUrl}/users/me/`, payload, {
+      headers: this.getAuthHeaders(),
+    });
+  }
+
+  changePassword(oldPassword: string, newPassword: string, newPassword2: string): Observable<any> {
+    return this.http.post(`${this.apiBaseUrl}/users/change-password/`, {
+      old_password: oldPassword,
+      new_password: newPassword,
+      new_password2: newPassword2,
+    }, {
+      headers: this.getAuthHeaders(),
+    });
+  }
+
   getDashboard(): Observable<DashboardStats> {
     return this.http.get<DashboardStats>(`${this.apiBaseUrl}/dashboard/`, {
       headers: this.getAuthHeaders(),

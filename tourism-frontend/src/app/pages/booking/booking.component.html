@@ -40,8 +40,8 @@
 
     </div>
 
-    <button type="submit">
-      Confirm Booking
+<button type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Réservation en cours…' : 'Confirmer la réservation' }}
     </button>
 
   </form>

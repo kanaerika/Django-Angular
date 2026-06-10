@@ -21,6 +21,10 @@ export class BookingService {
     return this.http.get(this.apiUrl);
   }
 
+  getBooking(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}${id}/`);
+  }
+
   getMyStats(): Observable<any> {
     return this.http.get(`${this.apiUrl}my-stats/`);
   }

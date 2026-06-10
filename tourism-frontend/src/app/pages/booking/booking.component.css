@@ -45,6 +45,11 @@ button:hover{
   background:#115e59;
 }
 
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 .success{
   margin-top:15px;
   color:green;

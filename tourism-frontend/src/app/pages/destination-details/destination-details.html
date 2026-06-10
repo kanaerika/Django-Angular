@@ -1,109 +1,46 @@
-<section class="featured-destinations">
-
+<section class="featured-destinations" *ngIf="city; else loadingState">
   <div class="section-title">
-    <h2>Featured Destinations</h2>
-
-    <p>
-      Explore some of the most beautiful places in Cameroon,
-      from breathtaking beaches to wildlife reserves and
-      vibrant cultural cities.
-    </p>
+    <h2>{{ city.name || 'Destination' }}</h2>
+    <p>{{ city.description || 'Données depuis l’API backend.' }}</p>
   </div>
 
   <div class="destination-grid">
-
-    <!-- KRIBI -->
-
-    <div class="destination-card">
-
+    <article class="destination-card">
       <div class="image-container">
-        <img src="assets/images/kribi.jpg" alt="Kribi">
+        <img [src]="city.thumbnail_url || 'assets/images/mount.jpg'" [alt]="city.name" />
       </div>
-
       <div class="card-content">
-
-        <span class="destination-tag">
-          Coastal Paradise
-        </span>
-
-        <h3>Kribi</h3>
-
-        <p>
-          Famous for its white sandy beaches,
-          fresh seafood and the spectacular
-          Lobe Waterfalls.
-        </p>
-
-        <button>
-          Discover More
-        </button>
-
+        <span class="destination-tag">{{ city.country_name || 'Cameroon' }}</span>
+        <h3>{{ city.name }}</h3>
+        <p>{{ city.description || 'Cette ville est désormais chargée depuis le backend.' }}</p>
+        <p class="meta-pill">{{ city.activities_count || 0 }} activités disponibles</p>
       </div>
-
-    </div>
-
-    <!-- WAZA -->
-
-    <div class="destination-card">
-
-      <div class="image-container">
-        <img src="assets/images/waza.jpg" alt="Waza">
-      </div>
-
-      <div class="card-content">
-
-        <span class="destination-tag">
-          Wildlife Adventure
-        </span>
-
-        <h3>Waza National Park</h3>
-
-        <p>
-          One of Africa's most important
-          wildlife reserves, home to elephants,
-          lions, giraffes and antelopes.
-        </p>
-
-        <button>
-          Discover More
-        </button>
-
-      </div>
-
-    </div>
-
-    <!-- YAOUNDE -->
-
-    <div class="destination-card">
-
-      <div class="image-container">
-        <img src="assets/images/musee.jpg" alt="Yaounde">
-      </div>
-
-      <div class="card-content">
-
-        <span class="destination-tag">
-          Culture & Gastronomy
-        </span>
-
-        <h3>Yaoundé</h3>
-
-        <p>
-          Discover museums, local cuisine,
-          restaurants, monuments and the rich
-          cultural life of Cameroon.
-        </p>
-
-        <button>
-          Discover More
-        </button>
-
-      </div>
-
-    </div>
-
+    </article>
   </div>
+</section>
 
+<ng-template #loadingState>
+  <section class="featured-destinations">
+    <p *ngIf="isLoading">Chargement des données backend…</p>
+    <p *ngIf="errorMessage" class="backend-error">{{ errorMessage }}</p>
+  </section>
+</ng-template>
+
+<section class="destination-gallery" *ngIf="activities.length">
+  <h2>Activités liées à cette destination</h2>
+  <div class="gallery-grid">
+    <article class="mini-card" *ngFor="let activity of activities">
+      <img [src]="activity.thumbnail_url || 'assets/images/kribi.jpg'" [alt]="activity.title" />
+      <div class="mini-card-body">
+        <h3>{{ activity.title }}</h3>
+        <p>{{ activity.description }}</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="destination-gallery" *ngIf="activities.length">
+  <app-review-form [activityId]="activities[0]?.id || 1"></app-review-form>
 </section>
 
 <section class="destination-gallery">

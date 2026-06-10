@@ -207,6 +207,23 @@
     transform:scale(1.08);
 }
 
+.mini-card{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 18px 35px rgba(15,23,42,0.10);
+}
+
+.mini-card-body{ padding:14px; }
+
+.mini-card-body h3{ margin:0 0 8px; color:#14532d; font-size:1.02rem; }
+
+.mini-card-body p{ color:#475569; font-size:0.95rem; line-height:1.6; }
+
+.meta-pill{ color:#0f766e; font-weight:600; }
+
+.backend-error{ color:#b91c1c; font-weight:600; }
+
 .experience-section{
 
     padding:120px 8%;

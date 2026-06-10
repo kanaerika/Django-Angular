@@ -1,0 +1,25 @@
+<section class="review-form-card">
+  <h3>Laisser un avis</h3>
+  <p>Ce formulaire respecte le modèle backend Review : note, titre et commentaire.</p>
+
+  <form (ngSubmit)="submit()" #reviewForm="ngForm">
+    <label>Note</label>
+    <select name="rating" [(ngModel)]="model.rating" required>
+      <option [ngValue]="5">5 étoiles</option>
+      <option [ngValue]="4">4 étoiles</option>
+      <option [ngValue]="3">3 étoiles</option>
+      <option [ngValue]="2">2 étoiles</option>
+      <option [ngValue]="1">1 étoile</option>
+    </select>
+
+    <label>Titre</label>
+    <input type="text" name="title" [(ngModel)]="model.title" placeholder="Titre de votre avis" required />
+
+    <label>Commentaire</label>
+    <textarea name="comment" [(ngModel)]="model.comment" rows="4" placeholder="Décrivez votre expérience" required></textarea>
+
+    <button type="submit" [disabled]="isSubmitting">{{ isSubmitting ? 'Envoi…' : 'Publier l’avis' }}</button>
+  </form>
+
+  <p class="feedback" *ngIf="feedback">{{ feedback }}</p>
+</section>

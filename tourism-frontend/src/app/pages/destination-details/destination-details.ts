@@ -1,42 +1,54 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { DestinationService } from '../../services/destination.service';
+import { ReviewFormComponent } from '../../components/review-form/review-form';
 
 @Component({
   selector: 'app-destination-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReviewFormComponent],
   templateUrl: './destination-details.html',
   styleUrl: './destination-details.css'
 })
-export class DestinationDetails {
+export class DestinationDetails implements OnInit {
+  city: any = null;
+  activities: any[] = [];
+  isLoading = false;
+  errorMessage = '';
 
-  city = {
-    name: 'Kribi',
-    country_name: 'Cameroon',
-    thumbnail_url: 'assets/images/kribi.jpg',
+  constructor(
+    private route: ActivatedRoute,
+    private destinationService: DestinationService,
+  ) {}
 
-    description: `
-      Kribi is one of the most beautiful coastal cities
-      in Cameroon, famous for its beaches, waterfalls,
-      seafood and vibrant culture.
-    `,
+  ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    if (!id) {
+      this.errorMessage = 'Identifiant de destination introuvable.';
+      return;
+    }
 
-    activities_count: 15,
-
-    popular_activities: [
-      {
-        title: 'Lobe Waterfalls',
-        thumbnail_url: 'assets/images/lobe.jpg'
+    this.isLoading = true;
+    this.destinationService.getCity(id).subscribe({
+      next: (response) => {
+        this.city = response;
       },
-      {
-        title: 'Beach Relaxation',
-        thumbnail_url: 'assets/images/kribi.jpg'
+      error: () => {
+        this.errorMessage = 'Impossible de charger les données de cette destination.';
       },
-      {
-        title: 'Boat Tours',
-        thumbnail_url: 'assets/images/kribi1.jpg'
-      }
-    ]
-  };
+    });
 
+    this.destinationService.getCityActivities(id).subscribe({
+      next: (response) => {
+        this.activities = Array.isArray(response) ? response : response?.results ?? [];
+      },
+      error: () => {
+        this.errorMessage = this.errorMessage || 'Impossible de charger les activités de cette destination.';
+      },
+      complete: () => {
+        this.isLoading = false;
+      },
+    });
+  }
 }

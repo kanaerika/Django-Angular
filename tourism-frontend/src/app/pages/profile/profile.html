@@ -1,0 +1,41 @@
+<section class="profile-shell">
+  <h2>Mon profil</h2>
+  <p>Cette page utilise les endpoints backend de gestion du profil utilisateur.</p>
+
+  <div class="panel" *ngIf="user; else loadingState">
+    <form (ngSubmit)="saveProfile()">
+      <label>Prénom</label>
+      <input type="text" [(ngModel)]="form.first_name" name="first_name" />
+
+      <label>Nom</label>
+      <input type="text" [(ngModel)]="form.last_name" name="last_name" />
+
+      <label>Nom d’utilisateur</label>
+      <input type="text" [(ngModel)]="form.username" name="username" />
+
+      <label>Email</label>
+      <input type="email" [(ngModel)]="form.email" name="email" />
+
+      <button type="submit" [disabled]="isLoading">{{ isLoading ? 'Enregistrement…' : 'Enregistrer' }}</button>
+    </form>
+
+    <form (ngSubmit)="changePassword()" class="password-form">
+      <h3>Changer le mot de passe</h3>
+      <label>Mot de passe actuel</label>
+      <input type="password" [(ngModel)]="passwordForm.old_password" name="old_password" />
+
+      <label>Nouveau mot de passe</label>
+      <input type="password" [(ngModel)]="passwordForm.new_password" name="new_password" />
+
+      <label>Confirmation</label>
+      <input type="password" [(ngModel)]="passwordForm.new_password2" name="new_password2" />
+
+      <button type="submit" [disabled]="isLoading">{{ isLoading ? 'Traitement…' : 'Changer le mot de passe' }}</button>
+    </form>
+  </div>
+
+  <ng-template #loadingState>
+    <p *ngIf="isLoading">Chargement du profil…</p>
+    <p class="feedback" *ngIf="feedback">{{ feedback }}</p>
+  </ng-template>
+</section>
