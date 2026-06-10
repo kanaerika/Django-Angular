@@ -1,16 +1,27 @@
 <section class="profile-shell">
-  <h2>Mon profil</h2>
-  <p>Cette page utilise les endpoints backend de gestion du profil utilisateur.</p>
 
-  <div class="panel" *ngIf="user; else loadingState">
+  <div class="profile-header" *ngIf="user">
+    <div class="avatar">{{ initials }}</div>
+    <div>
+      <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+      <p class="muted">@{{ form.username }} · {{ user.email }}</p>
+    </div>
+  </div>
+
+  <div class="feedback" *ngIf="feedback" [class.error]="feedbackType === 'error'">
+    {{ feedback }}
+  </div>
+
+  <div class="panel" *ngIf="user">
     <form (ngSubmit)="saveProfile()">
+      <h3>Mes informations</h3>
       <label>Prénom</label>
       <input type="text" [(ngModel)]="form.first_name" name="first_name" />
 
       <label>Nom</label>
       <input type="text" [(ngModel)]="form.last_name" name="last_name" />
 
-      <label>Nom d’utilisateur</label>
+      <label>Nom d'utilisateur</label>
       <input type="text" [(ngModel)]="form.username" name="username" />
 
       <label>Email</label>
@@ -34,8 +45,5 @@
     </form>
   </div>
 
-  <ng-template #loadingState>
-    <p *ngIf="isLoading">Chargement du profil…</p>
-    <p class="feedback" *ngIf="feedback">{{ feedback }}</p>
-  </ng-template>
+  <p class="loading" *ngIf="!user && isLoading">Chargement du profil…</p>
 </section>

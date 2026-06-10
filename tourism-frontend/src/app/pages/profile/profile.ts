@@ -16,11 +16,17 @@ export class ProfilePage implements OnInit {
   passwordForm = { old_password: '', new_password: '', new_password2: '' };
   isLoading = false;
   feedback = '';
+  feedbackType: 'success' | 'error' = 'success';
 
   constructor(private profileService: ProfileService) {}
 
   ngOnInit(): void {
     this.loadProfile();
+  }
+
+  get initials(): string {
+    if (!this.user) return '';
+    return `${(this.user.first_name || '?')[0]}${(this.user.last_name || '?')[0]}`.toUpperCase();
   }
 
   loadProfile(): void {
@@ -34,12 +40,12 @@ export class ProfilePage implements OnInit {
           email: response.email || '',
           username: response.username || '',
         };
+        this.isLoading = false;
       },
       error: () => {
-        this.feedback = 'Impossible de charger le profil utilisateur.';
-      },
-      complete: () => {
         this.isLoading = false;
+        this.feedbackType = 'error';
+        this.feedback = 'Impossible de charger le profil. Veuillez vous reconnecter.';
       },
     });
   }
@@ -48,13 +54,15 @@ export class ProfilePage implements OnInit {
     this.isLoading = true;
     this.profileService.updateCurrentUser(this.form).subscribe({
       next: () => {
-        this.feedback = 'Profil mis à jour.';
+        this.isLoading = false;
+        this.feedbackType = 'success';
+        this.feedback = '✅ Profil mis à jour avec succès.';
+        this.loadProfile();
       },
       error: () => {
-        this.feedback = 'Erreur lors de la mise à jour du profil.';
-      },
-      complete: () => {
         this.isLoading = false;
+        this.feedbackType = 'error';
+        this.feedback = 'Erreur lors de la mise à jour du profil.';
       },
     });
   }
@@ -67,14 +75,15 @@ export class ProfilePage implements OnInit {
       this.passwordForm.new_password2,
     ).subscribe({
       next: () => {
-        this.feedback = 'Mot de passe mis à jour.';
+        this.isLoading = false;
+        this.feedbackType = 'success';
+        this.feedback = '✅ Mot de passe mis à jour.';
         this.passwordForm = { old_password: '', new_password: '', new_password2: '' };
       },
       error: () => {
-        this.feedback = 'Erreur de mot de passe. Vérifiez les champs.';
-      },
-      complete: () => {
         this.isLoading = false;
+        this.feedbackType = 'error';
+        this.feedback = 'Erreur de mot de passe. Vérifiez les champs.';
       },
     });
   }
