@@ -35,3 +35,8 @@
 body.hide-footer .app-footer {
   display: none !important;
 }
+
+.footer { background: #102a13; color: white; text-align: center; padding: 60px 20px; }
+.footer-links { margin: 25px 0; display: flex; justify-content: center; gap: 30px; }
+.footer-links a { color: white; text-decoration: none; }
+.footer .copyright { opacity: .8; }

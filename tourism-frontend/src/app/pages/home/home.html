@@ -7,6 +7,7 @@
                 <button class="secondary" routerLink="/login" *ngIf="!authService.isAuthenticated()">Login</button>
                 <button class="secondary outline" routerLink="/create-account" *ngIf="!authService.isAuthenticated()">Create account</button>
                 <button class="secondary" routerLink="/dashboard" *ngIf="authService.isAuthenticated()">Dashboard</button>
+                <button class="secondary outline" (click)="logout()" *ngIf="authService.isAuthenticated()">Logout</button>
             </div>
         </div>
         <h1>Discover Cameroon</h1>
@@ -47,4 +48,18 @@
             <h3>supermarket</h3>
         </div>
     </div>
+</div>
+<div class="section">
+  <h2>Nos activités</h2>
+  <p *ngIf="isLoadingActivities">Chargement des activités…</p>
+  <p *ngIf="!isLoadingActivities && activities.length === 0">Aucune activité disponible pour le moment.</p>
+  <div class="activities-grid">
+    <a class="activity-tile" *ngFor="let a of activities" [routerLink]="['/activity', a.slug]">
+      <div class="activity-body">
+        <h3>{{ a.title }}</h3>
+        <p class="place">📍 {{ a.city_name }} · ⏱ {{ a.duration_hours }} h</p>
+        <p class="tile-price">{{ a.base_price }} FCFA</p>
+      </div>
+    </a>
+  </div>
 </div>

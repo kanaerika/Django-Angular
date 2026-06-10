@@ -1,0 +1,19 @@
+<section class="activities-shell">
+  <h1>Toutes nos activités</h1>
+  <p class="subtitle">Réservez une expérience inoubliable au Cameroun.</p>
+
+  <p *ngIf="isLoading">Chargement des activités…</p>
+  <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  <p *ngIf="!isLoading && !errorMessage && activities.length === 0">Aucune activité disponible.</p>
+
+  <div class="activities-grid">
+    <a class="activity-tile" *ngFor="let a of activities" [routerLink]="['/activity', a.slug]">
+      <h3>{{ a.title }}</h3>
+      <p class="place">📍 {{ a.city_name }} ({{ a.country_name }}) · ⏱ {{ a.duration_hours }} h</p>
+      <p class="categories" *ngIf="a.categories?.length">
+        <span *ngFor="let c of a.categories">#{{ c.name }} </span>
+      </p>
+      <p class="tile-price">{{ a.base_price }} FCFA <span>/ personne</span></p>
+    </a>
+  </div>
+</section>

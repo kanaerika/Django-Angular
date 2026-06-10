@@ -1,38 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { AuthService } from '../../services/auth';
 import { ActivityService } from '../../services/activity.service';
 
 @Component({
+  selector: 'app-activities',
   standalone: true,
-  selector: 'app-home',
   imports: [CommonModule, RouterLink],
-  templateUrl: './home.html',
-  styleUrls: ['./home.css'],
+  templateUrl: './activities.html',
+  styleUrls: ['./activities.css'],
 })
-export class HomeComponent implements OnInit {
+export class ActivitiesPage implements OnInit {
   activities: any[] = [];
-  isLoadingActivities = false;
+  isLoading = false;
+  errorMessage = '';
 
-  constructor(
-    public authService: AuthService,
-    private activityService: ActivityService,
-  ) {}
+  constructor(private activityService: ActivityService) {}
 
   ngOnInit(): void {
-    this.isLoadingActivities = true;
+    this.isLoading = true;
     this.activityService.getActivities().subscribe({
       next: (response) => {
         this.activities = response?.results ?? [];
-        this.isLoadingActivities = false;
+        this.isLoading = false;
       },
       error: () => {
-        this.isLoadingActivities = false;
+        this.isLoading = false;
+        this.errorMessage = "Impossible de charger les activités.";
       },
     });
-  }
-  logout(): void {
-    this.authService.logout();
   }
 }

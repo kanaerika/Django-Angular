@@ -1,0 +1,15 @@
+.activities-shell { max-width: 1080px; margin: 40px auto; padding: 18px; }
+.activities-shell h1 { color: #14532d; margin-bottom: 4px; }
+.subtitle { color: #64748b; margin-top: 0; }
+.activities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 20px; }
+.activity-tile {
+  background: #fff; border-radius: 16px; padding: 20px; text-decoration: none; color: inherit;
+  box-shadow: 0 10px 25px rgba(15,23,42,0.10); transition: transform .15s ease;
+}
+.activity-tile:hover { transform: translateY(-4px); }
+.activity-tile h3 { margin: 0 0 6px; color: #14532d; }
+.place { margin: 0; color: #64748b; font-size: 14px; }
+.categories { color: #0ea5e9; font-size: 13px; margin: 6px 0 0; }
+.tile-price { margin: 10px 0 0; font-weight: 800; color: #2563eb; }
+.tile-price span { font-weight: 400; color: #64748b; font-size: 13px; }
+.error { background: #fde2e2; color: #b30000; padding: 12px 16px; border-radius: 10px; }

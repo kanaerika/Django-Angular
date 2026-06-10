@@ -1,0 +1,26 @@
+<section class="bookings-shell">
+  <h1>Mes réservations</h1>
+
+  <div class="feedback" *ngIf="feedback" [class.error]="feedbackType === 'error'">{{ feedback }}</div>
+
+  <p *ngIf="isLoading">Chargement de vos réservations…</p>
+  <p *ngIf="!isLoading && bookings.length === 0">
+    Aucune réservation pour le moment. <a routerLink="/activities">Découvrir nos activités</a>
+  </p>
+
+  <div class="booking-card" *ngFor="let b of bookings">
+    <div class="booking-main">
+      <h3>{{ b.activity_title }} <span class="city">· {{ b.city_name }}</span></h3>
+      <p class="when">📅 {{ b.schedule_date }} à {{ b.schedule_start_time }} · 👥 {{ b.number_of_travelers }} voyageur(s)</p>
+      <p class="ref">Réf : {{ b.booking_reference }}</p>
+    </div>
+    <div class="booking-side">
+      <p class="price">{{ b.total_price }} FCFA</p>
+      <span class="status" [attr.data-status]="b.status">{{ b.status_display }}</span>
+      <div class="actions">
+        <button class="pay" *ngIf="b.status === 'pending'" (click)="pay(b)">Payer</button>
+        <button class="cancel" *ngIf="b.status === 'pending' || b.status === 'confirmed'" (click)="cancel(b)">Annuler</button>
+      </div>
+    </div>
+  </div>
+</section>

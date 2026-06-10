@@ -49,5 +49,30 @@ export const routes: Routes = [
       .then(m => m.DestinationDetails)
   },
   { path: 'booking', component: BookingComponent },
-  { path: 'profile', component: ProfilePage }
+  {
+    path: 'activity/:slug',
+    loadComponent: () =>
+      import('./pages/activity-details/activity-details')
+      .then(m => m.ActivityDetails)
+  },
+  { path: 'profile', component: ProfilePage },
+  
+   {
+    path: 'activities',
+    loadComponent: () =>
+      import('./pages/activities/activities')
+      .then(m => m.ActivitiesPage)
+  },
+  {
+    path: 'destinations',
+    loadComponent: () =>
+      import('./pages/destinations/destinations')
+      .then(m => m.DestinationsPage)
+  },
+  {
+    path: 'my-bookings',
+    loadComponent: () =>
+      import('./pages/my-bookings/my-bookings')
+      .then(m => m.MyBookingsPage)
+  },
 ];

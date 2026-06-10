@@ -901,3 +901,4 @@ body{
 
   text-decoration:none;
 }
+.nav-links li { cursor: pointer; }

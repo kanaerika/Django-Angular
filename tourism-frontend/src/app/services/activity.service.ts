@@ -42,4 +42,8 @@ export class ActivityService {
   getAvailableSchedules(slug: string): Observable<any> {
     return this.http.get(`${this.apiBaseUrl}/activities/${slug}/available-schedules/`);
   }
+
+  getActivity(slug: string): Observable<any> {
+    return this.http.get(`${this.apiBaseUrl}/activities/${slug}/`);
+  }
 }

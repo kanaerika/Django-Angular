@@ -1,0 +1,30 @@
+<section class="activity-shell" *ngIf="activity">
+  <div class="activity-hero">
+    <h1>{{ activity.title }}</h1>
+    <p class="meta">
+      📍 {{ activity.city_name }} ({{ activity.country_name }})
+      · ⏱ {{ activity.duration_hours }} h
+      · ⭐ {{ activity.average_rating || 'Pas encore noté' }}
+    </p>
+    <p class="price">{{ activity.base_price }} FCFA <span>/ personne</span></p>
+  </div>
+
+  <p class="description">{{ activity.description }}</p>
+
+  <h2>Créneaux disponibles</h2>
+
+  <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  <p *ngIf="!isLoading && schedules.length === 0">Aucun créneau disponible pour le moment.</p>
+
+  <div class="schedules">
+    <div class="schedule-card" *ngFor="let s of schedules">
+      <div>
+        <strong>{{ s.formatted_date }}</strong> à {{ s.formatted_time }}
+        <p class="spots">{{ s.available_spots }} places · {{ s.actual_price }} FCFA</p>
+      </div>
+      <a class="book-btn" [routerLink]="['/booking']" [queryParams]="{ scheduleId: s.id }">Réserver</a>
+    </div>
+  </div>
+</section>
+
+<p class="loading" *ngIf="isLoading && !activity">Chargement de l'activité…</p>

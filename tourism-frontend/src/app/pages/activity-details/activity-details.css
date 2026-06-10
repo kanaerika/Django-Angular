@@ -1,0 +1,25 @@
+.activity-shell { max-width: 900px; margin: 40px auto; padding: 18px; }
+.activity-hero {
+  background: linear-gradient(135deg, #14532d, #166534);
+  color: #fff; border-radius: 18px; padding: 26px; margin-bottom: 20px;
+}
+.activity-hero h1 { margin: 0 0 8px; }
+.activity-hero .meta { opacity: .9; margin: 0 0 10px; }
+.activity-hero .price { font-size: 26px; font-weight: 800; margin: 0; }
+.activity-hero .price span { font-size: 14px; font-weight: 400; opacity: .8; }
+.description { color: #334155; line-height: 1.6; }
+h2 { color: #14532d; margin-top: 28px; }
+.schedules { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.schedule-card {
+  display: flex; justify-content: space-between; align-items: center;
+  background: #fff; border-radius: 14px; padding: 16px 20px;
+  box-shadow: 0 10px 25px rgba(15,23,42,0.10);
+}
+.spots { margin: 4px 0 0; color: #64748b; font-size: 14px; }
+.book-btn {
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+  color: #fff; text-decoration: none; padding: 10px 22px;
+  border-radius: 999px; font-weight: 600;
+}
+.error { background: #fde2e2; color: #b30000; padding: 12px 16px; border-radius: 10px; }
+.loading { text-align: center; color: #64748b; margin: 60px 0; }

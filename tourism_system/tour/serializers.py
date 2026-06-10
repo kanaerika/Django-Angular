@@ -1,3 +1,4 @@
+from django.utils import timezone
 from rest_framework import serializers
 from .models import Category, Activity, ActivityImage, Schedule
 from destinations.serializers import CitySerializer

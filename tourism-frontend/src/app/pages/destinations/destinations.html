@@ -1,0 +1,16 @@
+<section class="destinations-shell">
+  <h1>Nos destinations</h1>
+  <p class="subtitle">Choisissez une ville et découvrez ses activités.</p>
+
+  <p *ngIf="isLoading">Chargement des destinations…</p>
+  <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  <p *ngIf="!isLoading && !errorMessage && cities.length === 0">Aucune destination disponible.</p>
+
+  <div class="cities-grid">
+    <a class="city-tile" *ngFor="let c of cities" [routerLink]="['/destination', c.id]">
+      <h3>{{ c.name }}</h3>
+      <p class="country">🌍 {{ c.country_name || c.country?.name }}</p>
+      <p class="desc" *ngIf="c.description">{{ c.description | slice:0:90 }}…</p>
+    </a>
+  </div>
+</section>
