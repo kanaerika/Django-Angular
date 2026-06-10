@@ -106,7 +106,12 @@
           ></i>
         </div>
       </div>
-
+      <div *ngIf="successMessage" style="background:#d1f7dd; color:#0a6e31; padding:12px 16px; border-radius:8px; margin-bottom:14px; font-weight:600;">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" style="background:#fde2e2; color:#b30000; padding:12px 16px; border-radius:8px; margin-bottom:14px; font-weight:600;">
+        {{ errorMessage }}
+      </div>
       <button type="submit" class="signup-btn" [disabled]="isLoading">
         {{ isLoading ? 'Creating account...' : 'Sign up' }}
       </button>

@@ -46,11 +46,11 @@ export class AuthService {
   register(first_name: string, username: string, last_name: string, email: string, password: string, password2: string): Observable<RegisterResponse> {
     return this.http.post<RegisterResponse>(`${this.apiBaseUrl}/users/`, {
       username,
-      first_name,
+      first_name, 
       last_name,
       email,
       password,
-      password2,
+      confirm_password: password2,
     });
   }
 

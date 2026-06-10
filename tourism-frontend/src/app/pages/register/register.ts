@@ -23,6 +23,8 @@ export class Register implements OnInit, OnDestroy {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(
     private authService: AuthService,
@@ -68,8 +70,8 @@ export class Register implements OnInit, OnDestroy {
       next: (response) => {
         this.isLoading = false;
         console.log('Registration successful:', response);
-        alert('Account created successfully. Please login.');
-        this.router.navigate(['/login']);
+        this.successMessage = '✅ Account created successfully! Redirecting to login...';
+        setTimeout(() => this.router.navigate(['/login']), 2000);
       },
       error: (error) => {
         this.isLoading = false;
@@ -95,7 +97,7 @@ export class Register implements OnInit, OnDestroy {
           }
         }
         
-        alert(errorMessage);
+        this.errorMessage = errorMessage;
       }
     });
   }
