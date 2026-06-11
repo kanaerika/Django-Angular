@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ActivityService } from '../../services/activity.service';
-
+import { ReviewFormComponent } from '../../components/review-form/review-form';
 @Component({
   selector: 'app-activity-details',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, ReviewFormComponent],
   templateUrl: './activity-details.html',
   styleUrls: ['./activity-details.css'],
 })

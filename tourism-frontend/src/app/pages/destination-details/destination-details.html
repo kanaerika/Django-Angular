@@ -1,18 +1,18 @@
 <section class="featured-destinations" *ngIf="city; else loadingState">
   <div class="section-title">
     <h2>{{ city.name || 'Destination' }}</h2>
-    <p>{{ city.description || 'Données depuis l’API backend.' }}</p>
+    <p>{{ city.description || 'explore and discover the best of Cameroon.' }}</p>
   </div>
 
   <div class="destination-grid">
     <article class="destination-card">
       <div class="image-container">
-        <img [src]="city.thumbnail_url || 'assets/images/mount.jpg'" [alt]="city.name" />
+        <img [src]="city.thumbnail_url || 'assets/images/yaounde.jpg'" [alt]="city.name" />
       </div>
       <div class="card-content">
         <span class="destination-tag">{{ city.country_name || 'Cameroon' }}</span>
         <h3>{{ city.name }}</h3>
-        <p>{{ city.description || 'Cette ville est désormais chargée depuis le backend.' }}</p>
+        <p>{{ city.description || 'explore and discover the best of Cameroon    .' }}</p>
         <p class="meta-pill">{{ city.activities_count || 0 }} activités disponibles</p>
       </div>
     </article>
@@ -21,16 +21,16 @@
 
 <ng-template #loadingState>
   <section class="featured-destinations">
-    <p *ngIf="isLoading">Chargement des données backend…</p>
+    <p *ngIf="isLoading">explore cameroon in all it has to offer…</p>
     <p *ngIf="errorMessage" class="backend-error">{{ errorMessage }}</p>
   </section>
 </ng-template>
 
 <section class="destination-gallery" *ngIf="activities.length">
-  <h2>Activités liées à cette destination</h2>
+  <h2>activities and cultures</h2>
   <div class="gallery-grid">
     <article class="mini-card" *ngFor="let activity of activities">
-      <img [src]="activity.thumbnail_url || 'assets/images/kribi.jpg'" [alt]="activity.title" />
+      <img [src]="activity.thumbnail_url || 'assets/images/monument.jpg'" [alt]="activity.title" />
       <div class="mini-card-body">
         <h3>{{ activity.title }}</h3>
         <p>{{ activity.description }}</p>

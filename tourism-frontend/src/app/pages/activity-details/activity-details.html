@@ -25,6 +25,8 @@
       <a class="book-btn" [routerLink]="['/booking']" [queryParams]="{ scheduleId: s.id }">Réserver</a>
     </div>
   </div>
+     <h2>Laisser un avis</h2>
+  <app-review-form [activityId]="activity.id"></app-review-form>
 </section>
 
 <p class="loading" *ngIf="isLoading && !activity">Chargement de l'activité…</p>

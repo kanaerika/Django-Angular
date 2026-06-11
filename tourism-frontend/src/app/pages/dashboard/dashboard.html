@@ -75,9 +75,11 @@
     <h2>Why Visit Cameroon?</h2>
 
     <p>
-      Known as Africa in Miniature, Cameroon offers
-      mountains, beaches, rainforests, wildlife,
-      diverse cultures and unforgettable adventures.
+      Discover Cameroon, Africa in Miniature — a country of spectacular
+landscapes, luxurious accommodations, rich cultural traditions,
+exotic wildlife, stunning beaches, and extraordinary adventures.
+From the shores of Kribi to the peaks of Mount Cameroon,
+every destination tells a unique story.
     </p>
 
   </div>
@@ -120,13 +122,16 @@
 </div>
 <section class="featured-destinations">
   <div class="section-title">
-    <h2>Destinations depuis le backend</h2>
-    <p>Les cartes ci-dessous sont alimentées par les endpoints documentés de l’API.</p>
-  </div>
+  <h2>Featured Destinations</h2>
+  <p>
+    From the pristine beaches of Kribi to the wildlife of Waza National Park
+    and the rich cultural heritage of Yaoundé, start your next adventure here.
+  </p>
+</div>
 
-  <p *ngIf="isLoading">Chargement des données backend…</p>
-  <p *ngIf="errorMessage" class="backend-error">{{ errorMessage }}</p>
-
+  <p *ngIf="isLoading" class="loading-text">
+  🌍 Loading amazing destinations for your next adventure...
+</p>
   <div class="destinations-grid" *ngIf="featuredCities.length">
     <app-destination-card *ngFor="let city of featuredCities" [destination]="city"></app-destination-card>
   </div>
@@ -135,7 +140,9 @@
 <section class="featured-destinations">
   <div class="section-title">
     <h2>Activités recommandées</h2>
-    <p>Connexion avec les activités exposées par le backend.</p>
+    <p>explore and discover the best activities Cameroon has to offer 
+      for diversity and entertainment
+      .</p>
   </div>
 
   <div class="destinations-grid" *ngIf="featuredActivities.length">
@@ -150,8 +157,9 @@
     <h2>Featured Destinations</h2>
 
     <p>
-      Discover some of the most breathtaking places
-      Cameroon has to offer.
+      Experience the heart of Africa through Cameroon’s spectacular landscapes,
+    vibrant traditions, exceptional hospitality, and remarkable destinations
+    that inspire adventure and create lasting memories.
     </p>
 
   </div>
@@ -270,7 +278,8 @@
     <h2>Explore Categories</h2>
 
     <p>
-      Discover the many experiences Cameroon has to offer.
+      Discover the many experiences Cameroon has to offer and embark on a journey through breathtaking landscapes, rich traditions,
+       welcoming communities, and extraordinary destinations.
     </p>
 
   </div>
